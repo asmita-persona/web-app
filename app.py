@@ -30,7 +30,7 @@ if st.button("Start Debate"):
             prompt = f"You are a skilled debater. The motion is: '{topic}'. The user ({username}) is arguing '{stance}' and said: '{user_argument}'. Argue strongly '{ai_stance}' in 2-3 concise, logical paragraphs."
             
             response = client.models.generate_content(
-                model="gemini-2.5-flash",
+                model="gemini-3.8-flash",
                 contents=prompt
             )
             st.write(response.text)
