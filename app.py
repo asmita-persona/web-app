@@ -100,7 +100,7 @@ with tab1:
             if st.button("⚖️ Get Judge Verdict", type="primary"):
                 with st.spinner("Judge is scoring the debate..."):
                                        history = "\n".join([f"{'HUMAN PLAYER (' + st.session_state.name + ')' if m['role'] == 'user' else 'AI OPPONENT'} ({m['round']}): {m['text']}" for m in st.session_state.messages])
-                    judge_prompt = f"Judge this 3-round debate on '{st.session_state.topic}'. Transcript:\n{history}\n\nEvaluate ONLY the HUMAN PLAYER ({st.session_state.name}), NOT the AI Opponent. Score {st.session_state.name} out of 10 on Logic, Evidence, and Rebuttal, give 2 tips for {st.session_state.name} to improve, and declare whether {st.session_state.name} or the AI Opponent won."
+                        judge_prompt = f"Judge this 3-round debate on '{st.session_state.topic}'. Transcript:\n{history}\n\nEvaluate ONLY the HUMAN PLAYER ({st.session_state.name}), NOT the AI Opponent. Score {st.session_state.name} out of 10 on Logic, Evidence, and Rebuttal, give 2 tips for {st.session_state.name} to improve, and declare whether {st.session_state.name} or the AI Opponent won."
                     if verdict:
                         st.session_state.messages.append({"role": "judge", "round": "Verdict", "text": verdict})
                         st.rerun()
