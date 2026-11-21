@@ -226,40 +226,39 @@ with tab1:
                 mime="text/plain",
             )
 
-        st.divider()
+                st.divider()
         if st.button("🔄 Start a New Debate"):
-st.session_state.clear()
-st.rerun()
+            st.session_state.clear()
+            st.rerun()
 
-==========================================
-
-
-TAB 2: DEBATE ACADEMY & RULES
-
-
-==========================================
-
+# ==========================================
+# TAB 2: DEBATE ACADEMY & RULES
+# ==========================================
 with tab2:
-st.header("How to Debate & Win")
-st.write(
-"Welcome to the Debate Academy! Whether it's your first time arguing a motion or you're preparing for competitive tournaments, use these rules and frameworks to build unbeatable arguments."
-)
-st.subheader("1. How the 3-Round Format Works")
-st.markdown(
+    st.header("How to Debate & Win")
+    st.write(
+        "Welcome to the Debate Academy! Whether it's your first time arguing a motion or you're preparing for competitive tournaments, use these rules and frameworks to build unbeatable arguments."
+    )
+
+    st.subheader("1. How the 3-Round Format Works")
+    st.markdown(
+        """
+* **Round 1 — Opening Statement:** State your main thesis clearly and introduce your 2 strongest points.
+* **Round 2 — Rebuttal:** Attack your opponent's weakest point *first*, explain why their logic fails, and defend your own case. Never introduce brand-new topics here—focus on clashing!
+* **Round 3 — Closing Statement:** Summarize why your side won the key clashes of the debate and leave the judge with one memorable takeaway.
 """
-• Round 1 — Opening Statement: State your main thesis clearly and introduce your 2 strongest points.
-• Round 2 — Rebuttal: Attack your opponent's weakest point first, explain why their logic fails, and defend your own case. Never introduce brand-new topics here—focus on clashing!
-• Round 3 — Closing Statement: Summarize why your side won the key clashes of the debate and leave the judge with one memorable takeaway.
+    )
+
+    st.subheader("2. The PEEL Method (How to Structure Every Point)")
+    st.info(
+        """
+* **P – Point:** State your claim in one clear sentence (*"School uniforms reduce peer pressure."*).
+* **E – Evidence:** Back it up with a fact, statistic, or real-world example.
+* **E – Explanation:** Explain *why* that evidence proves your point.
+* **L – Link:** Connect it back to the main debate motion.
 """
-)st.subheader("2. The PEEL Method (How to Structure Every Point)")
-st.info(
-"""
-• P – Point: State your claim in one clear sentence ("School uniforms reduce peer pressure.").
-• E – Evidence: Back it up with a fact, statistic, or real-world example.
-• E – Explanation: Explain why that evidence proves your point.
-• L – Link: Connect it back to the main debate motion.
-"""
-)st.subheader("3. Common Logical Fallacies to Avoid")
+    )
+
 with st.expander("🚫 Strawman Fallacy"):
 st.write(
 "Exaggerating or twisting your opponent's argument to make it easier to attack instead of addressing what they actually said."
