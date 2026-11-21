@@ -226,7 +226,7 @@ with tab1:
                 mime="text/plain",
             )
 
-                st.divider()
+            st.divider()
         if st.button("🔄 Start a New Debate"):
             st.session_state.clear()
             st.rerun()
