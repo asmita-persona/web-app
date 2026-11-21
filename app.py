@@ -226,7 +226,7 @@ with tab1:
                 mime="text/plain",
             )
 
-            st.divider()
+        st.divider()
         if st.button("🔄 Start a New Debate"):
             st.session_state.clear()
             st.rerun()
@@ -242,39 +242,37 @@ with tab2:
 
     st.subheader("1. How the 3-Round Format Works")
     st.markdown(
-        """
-* **Round 1 — Opening Statement:** State your main thesis clearly and introduce your 2 strongest points.
-* **Round 2 — Rebuttal:** Attack your opponent's weakest point *first*, explain why their logic fails, and defend your own case. Never introduce brand-new topics here—focus on clashing!
-* **Round 3 — Closing Statement:** Summarize why your side won the key clashes of the debate and leave the judge with one memorable takeaway.
-"""
+        "* **Round 1 — Opening Statement:** State your main thesis clearly and introduce your 2 strongest points.\n"
+        "* **Round 2 — Rebuttal:** Attack your opponent's weakest point *first*, explain why their logic fails, and defend your own case. Never introduce brand-new topics here—focus on clashing!\n"
+        "* **Round 3 — Closing Statement:** Summarize why your side won the key clashes of the debate and leave the judge with one memorable takeaway."
     )
 
     st.subheader("2. The PEEL Method (How to Structure Every Point)")
     st.info(
-        """
-* **P – Point:** State your claim in one clear sentence (*"School uniforms reduce peer pressure."*).
-* **E – Evidence:** Back it up with a fact, statistic, or real-world example.
-* **E – Explanation:** Explain *why* that evidence proves your point.
-* **L – Link:** Connect it back to the main debate motion.
-"""
+        "* **P – Point:** State your claim in one clear sentence (*\"School uniforms reduce peer pressure.\"*).\n"
+        "* **E – Evidence:** Back it up with a fact, statistic, or real-world example.\n"
+        "* **E – Explanation:** Explain *why* that evidence proves your point.\n"
+        "* **L – Link:** Connect it back to the main debate motion."
     )
 
-with st.expander("🚫 Strawman Fallacy"):
-st.write(
-"Exaggerating or twisting your opponent's argument to make it easier to attack instead of addressing what they actually said."
-)
-with st.expander("🚫 Ad Hominem (Personal Attacks)"):
-st.write(
-"Attacking the person instead of their argument. Always stay respectful and attack ideas, not people."
-)
-with st.expander("🚫 Slippery Slope"):
-st.write(
-"Claiming that one small step will inevitably lead to an extreme disaster without proving how."
-)st.subheader("4. Golden Rules of the Arena")
-st.markdown(
-"""
-1. Respect the Motion: Stick to your assigned side (For or Against)—great debaters can argue both sides of any issue.
-2. Stay Civil: Zero hate speech, slurs, or personal insults.
-3. Address the Clash: Don't ignore your opponent's best point—tackle it head-on!
-"""
-)
+    st.subheader("3. Common Logical Fallacies to Avoid")
+    with st.expander("🚫 Strawman Fallacy"):
+        st.write(
+            "Exaggerating or twisting your opponent's argument to make it easier to attack instead of addressing what they actually said."
+        )
+    with st.expander("🚫 Ad Hominem (Personal Attacks)"):
+        st.write(
+            "Attacking the person instead of their argument. Always stay respectful and attack ideas, not people."
+        )
+    with st.expander("🚫 Slippery Slope"):
+        st.write(
+            "Claiming that one small step will inevitably lead to an extreme disaster without proving how."
+        )
+
+    st.subheader("4. Golden Rules of the Arena")
+    st.markdown(
+        "1. **Respect the Motion:** Stick to your assigned side (**For** or **Against**)—great debaters can argue *both* sides of any issue.\n"
+        "2. **Stay Civil:** Zero hate speech, slurs, or personal insults.\n"
+        "3. **Address the Clash:** Don't ignore your opponent's best point—tackle it head-on!"
+    )
+            
