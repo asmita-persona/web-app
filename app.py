@@ -1,5 +1,6 @@
 import streamlit as st
 from google import genai
+from google.genai import types
 
 st.set_page_config(page_title="AI Debate Arena", page_icon="⚖️")
 st.title("⚖️ AI Debate Arena")
@@ -12,13 +13,24 @@ if "debate_active" not in st.session_state:
 if "round_num" not in st.session_state:
     st.session_state.round_num = 1
 
+@st.cache_resource
+def get_client():
+    return genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
+
 def get_ai_reply(prompt):
-    client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
+    client = get_client()
     models = ["gemini-3.8-flash-lite", "gemini-3.8-flash", "gemini-3.5-flash"]
     for m in models:
         try:
             def stream():
-                for chunk in client.models.generate_content_stream(model=m, contents=prompt):
+                for chunk in client.models.generate_content_stream(
+                    model=m,
+                    contents=prompt,
+                    config=types.GenerateContentConfig(
+                        thinking_config=types.ThinkingConfig(thinking_budget=0),
+                        max_output_tokens=450
+                    )
+                ):
                     if chunk.text:
                         yield chunk.text
             return st.write_stream(stream)
