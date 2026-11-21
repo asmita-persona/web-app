@@ -19,34 +19,29 @@ def get_client():
     return genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
 
 
-def get_ai_reply(prompt):
+ddef get_ai_reply(prompt):
     client = get_client()
     models = ["gemini-3.5-flash-lite", "gemini-3.8-flash", "gemini-4-hydrogen"]
     last_error = None
+    cfg = types.GenerateContentConfig(
+        thinking_config=types.ThinkingConfig(thinking_level=types.ThinkingLevel.LOW),
+        max_output_tokens=4096,
+    )
 
     for m in models:
         try:
-            def stream():
-                                            def stream():
-                for chunk in client.models.generate_content_stream(
-                    model=m,
-                    contents=prompt,
-                    config=types.GenerateContentConfig(
-                        thinking_config=types.ThinkingConfig(
-                            thinking_level=types.ThinkingLevel.LOW
-                        ),
-                        max_output_tokens=4096,
-                    ),
-                ):
-                    if chunk.text:
-                        yield chunk.text
-
-                       if chunk.text:
-                        yield chunk.text
-
-            return st.write_stream(stream)
+            response = client.models.generate_content(
+                model=m, contents=prompt, config=cfg
+            )
+            st.markdown(response.text)
+            return response.text
         except Exception as e:
             last_error = e
+            continue
+
+    st.error(f"AI server error—please try submitting again! (Details: {last_error})")
+    return None
+
             continue
 
     st.error(f"AI server error—please try submitting again! (Details: {last_error})")
