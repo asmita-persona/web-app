@@ -19,7 +19,7 @@ def get_client():
     return genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
 
 
-ddef get_ai_reply(prompt):
+def get_ai_reply(prompt):
     client = get_client()
     models = ["gemini-3.5-flash-lite", "gemini-3.8-flash", "gemini-4-hydrogen"]
     last_error = None
