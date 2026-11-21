@@ -21,7 +21,6 @@ def get_client():
 
 def get_ai_reply(prompt):
     client = get_client()
-    # Current active fast & capable models
     models = ["gemini-3.5-flash-lite", "gemini-3.8-flash", "gemini-4-hydrogen"]
     last_error = None
 
@@ -33,9 +32,9 @@ def get_ai_reply(prompt):
                     contents=prompt,
                     config=types.GenerateContentConfig(
                         thinking_config=types.ThinkingConfig(
-                            thinking_level=types.ThinkingLevel.LOW
+                            thinking_level=types.ThinkingLevel.MINIMAL
                         ),
-                        max_output_tokens=500,
+                        max_output_tokens=2500,
                     ),
                 ):
                     if chunk.text:
@@ -73,7 +72,9 @@ with tab1:
             "Universal Basic Income is necessary in an automated economy",
             "Space exploration funding should be redirected to climate change solutions",
         ]
-        selected_preset = st.selectbox("Quick-Pick a Debate Motion (or write your own):", preset_topics)
+        selected_preset = st.selectbox(
+            "Quick-Pick a Debate Motion (or write your own):", preset_topics
+        )
 
         if selected_preset == "Custom Topic (Type your own below)":
             topic = st.text_input(
@@ -227,66 +228,54 @@ with tab1:
 
         st.divider()
         if st.button("🔄 Start a New Debate"):
-            st.session_state.clear()
-            st.rerun()
+st.session_state.clear()
+st.rerun()
 
-# ==========================================
-# TAB 2: DEBATE ACADEMY & RULES
-# ==========================================
+==========================================
+
+
+TAB 2: DEBATE ACADEMY & RULES
+
+
+==========================================
+
 with tab2:
-    st.header("How to Debate & Win")
-    st.write(
-        "Welcome to the Debate Academy! Whether it's your first time arguing a motion or you're preparing for competitive tournaments, use these rules and frameworks to build unbeatable arguments."
-    )
-
-    st.subheader("1. How the 3-Round Format Works")
-    st.markdown(
-        """
-* **Round 1 — Opening Statement:** State your main thesis clearly and introduce your 2 strongest points.
-* **Round 2 — Rebuttal:** Attack your opponent's weakest point *first*, explain why their logic fails, and defend your own case. Never introduce brand-new topics here—focus on clashing!
-* **Round 3 — Closing Statement:** Summarize why your side won the key clashes of the debate and leave the judge with one memorable takeaway.
+st.header("How to Debate & Win")
+st.write(
+"Welcome to the Debate Academy! Whether it's your first time arguing a motion or you're preparing for competitive tournaments, use these rules and frameworks to build unbeatable arguments."
+)
+st.subheader("1. How the 3-Round Format Works")
+st.markdown(
 """
-    )
-
-    st.subheader("2. The PEEL Method (How to Structure Every Point)")
-    st.info(
-        """
-* **P – Point:** State your claim in one clear sentence (*"School uniforms reduce peer pressure."*).
-* **E – Evidence:** Back it up with a fact, statistic, or real-world example.
-* **E – Explanation:** Explain *why* that evidence proves your point.
-* **L – Link:** Connect it back to the main debate motion.
+• Round 1 — Opening Statement: State your main thesis clearly and introduce your 2 strongest points.
+• Round 2 — Rebuttal: Attack your opponent's weakest point first, explain why their logic fails, and defend your own case. Never introduce brand-new topics here—focus on clashing!
+• Round 3 — Closing Statement: Summarize why your side won the key clashes of the debate and leave the judge with one memorable takeaway.
 """
-    )
-
-    st.subheader("3. Common Logical Fallacies to Avoid")
-    with st.expander("🚫 Strawman Fallacy"):
-        st.write(
-            "Exaggerating or twisting your opponent's argument to make it easier to attack instead of addressing what they actually said."
-        )
-    with st.expander("🚫 Ad Hominem (Personal Attacks)"):
-        st.write(
-            "Attacking the person instead of their argument. Always stay respectful and attack ideas, not people."
-        )
-    with st.expander("🚫 Slippery Slope"):
-        st.write(
-            "Claiming that one small step will inevitably lead to an extreme disaster without proving how."
-        )
-
-    st.subheader("4. Golden Rules of the Arena")
-    st.markdown(
-        """
-1. **Respect the Motion:** Stick to your assigned side (**For** or **Against**)—great debaters can argue *both* sides of any issue.
-2. **Stay Civil:** Zero hate speech, slurs, or personal insults.
-3. **Address the Clash:** Don't ignore your opponent's best point—tackle it head-on!
+)st.subheader("2. The PEEL Method (How to Structure Every Point)")
+st.info(
 """
-    )
-                for chunk in client.models.generate_content_stream(
-                    model=m,
-                    contents=prompt,
-                    config=types.GenerateContentConfig(
-                        thinking_config=types.ThinkingConfig(
-                            thinking_level=types.ThinkingLevel.MINIMAL
-                        ),
-                        max_output_tokens=2500,
-                    ),
-                ):
+• P – Point: State your claim in one clear sentence ("School uniforms reduce peer pressure.").
+• E – Evidence: Back it up with a fact, statistic, or real-world example.
+• E – Explanation: Explain why that evidence proves your point.
+• L – Link: Connect it back to the main debate motion.
+"""
+)st.subheader("3. Common Logical Fallacies to Avoid")
+with st.expander("🚫 Strawman Fallacy"):
+st.write(
+"Exaggerating or twisting your opponent's argument to make it easier to attack instead of addressing what they actually said."
+)
+with st.expander("🚫 Ad Hominem (Personal Attacks)"):
+st.write(
+"Attacking the person instead of their argument. Always stay respectful and attack ideas, not people."
+)
+with st.expander("🚫 Slippery Slope"):
+st.write(
+"Claiming that one small step will inevitably lead to an extreme disaster without proving how."
+)st.subheader("4. Golden Rules of the Arena")
+st.markdown(
+"""
+1. Respect the Motion: Stick to your assigned side (For or Against)—great debaters can argue both sides of any issue.
+2. Stay Civil: Zero hate speech, slurs, or personal insults.
+3. Address the Clash: Don't ignore your opponent's best point—tackle it head-on!
+"""
+)
