@@ -27,7 +27,8 @@ def get_ai_reply(prompt):
     for m in models:
         try:
             def stream():
-                                for chunk in client.models.generate_content_stream(
+                                            def stream():
+                for chunk in client.models.generate_content_stream(
                     model=m,
                     contents=prompt,
                     config=types.GenerateContentConfig(
@@ -37,8 +38,10 @@ def get_ai_reply(prompt):
                         max_output_tokens=4096,
                     ),
                 ):
-
                     if chunk.text:
+                        yield chunk.text
+
+                       if chunk.text:
                         yield chunk.text
 
             return st.write_stream(stream)
