@@ -280,3 +280,13 @@ with tab2:
 3. **Address the Clash:** Don't ignore your opponent's best point—tackle it head-on!
 """
     )
+                for chunk in client.models.generate_content_stream(
+                    model=m,
+                    contents=prompt,
+                    config=types.GenerateContentConfig(
+                        thinking_config=types.ThinkingConfig(
+                            thinking_level=types.ThinkingLevel.MINIMAL
+                        ),
+                        max_output_tokens=2500,
+                    ),
+                ):
