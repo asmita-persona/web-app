@@ -42,7 +42,7 @@ def get_ai_reply(prompt):
     st.error(f"AI server error—please try submitting again! (Details: {last_error})")
     return None
 
-            continue
+continue
 
     st.error(f"AI server error—please try submitting again! (Details: {last_error})")
     return None
